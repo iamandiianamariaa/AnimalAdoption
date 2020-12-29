@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AnimalAdoption.Models
 {
@@ -19,5 +20,9 @@ namespace AnimalAdoption.Models
 
         // many-to-many relationship
         public virtual ICollection<Shelter> Shelters { get; set; }
+
+        // checkboxes list
+        [NotMapped]
+        public List<CheckBoxViewModel> SheltersList { get; set; }
     }
 }

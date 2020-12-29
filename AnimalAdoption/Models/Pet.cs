@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace AnimalAdoption.Models
 {
@@ -36,6 +37,8 @@ namespace AnimalAdoption.Models
         // one-to-many relationship
         public int ShelterId { get; set; }
         public virtual Shelter Shelter { get; set; }
+
+        public IEnumerable<SelectListItem> ShelterList { get; set; }
     }
     public enum Gender
     {

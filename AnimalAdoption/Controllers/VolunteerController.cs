@@ -40,6 +40,8 @@ namespace AnimalAdoption.Controllers
         public ActionResult Create()
         {
             Volunteer volunteer = new Volunteer();
+            volunteer.SheltersList = GetAllShelters();
+            volunteer.Shelters = new List<Shelter>();
             return View(volunteer);
         }
 
@@ -47,12 +49,17 @@ namespace AnimalAdoption.Controllers
         [HttpPost]
         public ActionResult Create(Volunteer volunteer)
         {
+            var selectedShelters = volunteer.SheltersList.Where(b => b.Checked).ToList();
             try
             {
-                Shelter shelter = (Shelter)db.Shelters.Include(ceva => ceva.Volunteers);
-
                 if (ModelState.IsValid)
                 {
+                    volunteer.Shelters = new List<Shelter>();
+                    for (int i = 0; i < selectedShelters.Count(); i++)
+                    {
+                        Shelter shelter = db.Shelters.Find(selectedShelters[i].Id);
+                        volunteer.Shelters.Add(shelter);
+                    }
                     db.Volunteers.Add(volunteer);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Volunteer");
@@ -85,6 +92,12 @@ namespace AnimalAdoption.Controllers
             if (id.HasValue)
             {
                 Volunteer volunteer = db.Volunteers.Find(id);
+                volunteer.SheltersList = GetAllShelters();
+
+                foreach (Shelter checkedShelter in volunteer.Shelters)
+                {
+                    volunteer.SheltersList.FirstOrDefault(g => g.Id == checkedShelter.ShelterId).Checked = true;
+                }
 
                 if (volunteer == null)
                 {
@@ -99,15 +112,24 @@ namespace AnimalAdoption.Controllers
         [HttpPut]
         public ActionResult Edit(int id, Volunteer volunteerRequestor)
         {
+            Volunteer volunteer = db.Volunteers.Find(id);
+            var selectedShelters = volunteerRequestor.SheltersList.Where(b => b.Checked).ToList();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    Volunteer volunteer = db.Volunteers.Find(id);
                     if (TryUpdateModel(volunteer))
                     {
                         volunteer.VolunteerName = volunteerRequestor.VolunteerName;
                         volunteer.Age = volunteerRequestor.Age;
+                        volunteer.Shelters.Clear();
+                        volunteer.Shelters = new List<Shelter>();
+
+                        for (int i = 0; i < selectedShelters.Count(); i++)
+                        {
+                            Shelter shelter = db.Shelters.Find(selectedShelters[i].Id);
+                            volunteer.Shelters.Add(shelter);
+                        }
                         db.SaveChanges();
                     }
                     return RedirectToAction("Index");
@@ -119,5 +141,22 @@ namespace AnimalAdoption.Controllers
                 return View(volunteerRequestor);
             }
         }
+
+        [NonAction]
+        public List<CheckBoxViewModel> GetAllShelters()
+        {
+            var checkboxList = new List<CheckBoxViewModel>();
+            foreach (var shelter in db.Shelters.ToList())
+            {
+                checkboxList.Add(new CheckBoxViewModel
+                {
+                    Id = shelter.ShelterId,
+                    Name = shelter.ShelterName,
+                    Checked = false
+                });
+            }
+            return checkboxList;
+        }
+
     }
 }
