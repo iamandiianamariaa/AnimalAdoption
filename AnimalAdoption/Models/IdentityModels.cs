@@ -29,5 +29,14 @@ namespace AnimalAdoption.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Pet> Pets { get; set; }
+
+        public DbSet<Shelter> Shelters { get; set; }
+
+        public DbSet<Volunteer> Volunteers { get; set; }
+
+        public DbSet<Adoption> Adoptions { get; set; }
+
+        public DbSet<ShelterContactInfo> ShelterContactInfos { get; set; }
     }
 }

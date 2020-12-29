@@ -33,11 +33,18 @@ namespace AnimalAdoption
                 var user = new ApplicationUser();
                 user.UserName = "admin@admin.com";
                 user.Email = "admin@admin.com";
-                var adminCreated = userManager.Create(user, "Admin2020!");
+                var adminCreated = userManager.Create(user, "Admin2020");
                 if (adminCreated.Succeeded)
                 {
                     userManager.AddToRole(user.Id, "Admin");
                 }
+            }
+            if (!roleManager.RoleExists("User"))
+            {
+                // adaugam rolul de utilizator
+                var role = new IdentityRole();
+                role.Name = "User";
+                roleManager.Create(role);
             }
             // ATENTIE !!! Pentru proiecte, pentru a adauga un rol nou trebuie sa adaugati secventa:
             /*if (!roleManager.RoleExists("your_role_name"))
