@@ -15,7 +15,7 @@ namespace AnimalAdoption.Models
         MaxLength(200, ErrorMessage = "Name cannot be more than 100!")]
         public string VolunteerName { get; set; }
 
-        [Range(16, 70, ErrorMessage = "Age must be between 1 and 70")]
+        [Range(16, 70, ErrorMessage = "Age must be between 16 and 70")]
         public int Age { get; set; }
 
         // many-to-many relationship

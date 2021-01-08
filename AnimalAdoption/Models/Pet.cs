@@ -34,6 +34,9 @@ namespace AnimalAdoption.Models
         MaxLength(200, ErrorMessage = "Breed name cannot be more than 50!")]
         public string Breed { get; set; }
 
+        // one-to-one relationship
+        public virtual Adoption Adoption { get; set; }
+
         // one-to-many relationship
         public int ShelterId { get; set; }
         public virtual Shelter Shelter { get; set; }

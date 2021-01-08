@@ -3,6 +3,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using AnimalAdoption.Models;
+using System.Collections.Generic;
 
 namespace AnimalAdoption.Models
 {
@@ -23,6 +25,7 @@ namespace AnimalAdoption.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer<ApplicationDbContext>(new Initp());
         }
 
         public static ApplicationDbContext Create()
@@ -38,5 +41,22 @@ namespace AnimalAdoption.Models
         public DbSet<Adoption> Adoptions { get; set; }
 
         public DbSet<ShelterContactInfo> ShelterContactInfos { get; set; }
+    }
+
+    public class Initp : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
+    { // custom initializer
+        protected override void Seed(ApplicationDbContext ctx)
+        {
+            ShelterContactInfo contactInfo = new ShelterContactInfo { Address = "Strada Dobrogeanu Gherea", PhoneNumber = "0728355114", City = "Roman", County = "Neamt", Email = "abc@gmail.com" };
+            ctx.ShelterContactInfos.Add(contactInfo);
+
+            Shelter s1 = new Shelter { ShelterName = "Happy Paws", ShelterContactInfo=contactInfo };
+            ctx.Shelters.Add(s1);
+            Volunteer v1 = new Volunteer { VolunteerName="Andrei Stefan", Age=20,Shelters=new List<Shelter> { s1 } };
+            ctx.Volunteers.Add(v1);
+
+            ctx.SaveChanges();
+            base.Seed(ctx);
+        }
     }
 }

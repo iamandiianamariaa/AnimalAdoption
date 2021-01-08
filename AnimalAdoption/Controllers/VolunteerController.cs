@@ -37,7 +37,7 @@ namespace AnimalAdoption.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult New()
         {
             Volunteer volunteer = new Volunteer();
             volunteer.SheltersList = GetAllShelters();
@@ -47,7 +47,7 @@ namespace AnimalAdoption.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Create(Volunteer volunteer)
+        public ActionResult New(Volunteer volunteer)
         {
             var selectedShelters = volunteer.SheltersList.Where(b => b.Checked).ToList();
             try

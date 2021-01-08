@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<h2>@ViewBag.Title</h2>
+@foreach (var volunteer in ViewBag.Volunteers)
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @Html.Label("Name", "Name:")
+            <br />
+            <p>@volunteer.VolunteerName</p>
+            @using (Html.BeginForm(actionName: "Details", controllerName: "Volunteer",
+                    method: FormMethod.Get, routeValues: new { id = volunteer.VolunteerId }))
+            {
+                <button class=" btn btn-primary">Details</button>
+            }
+        </div>
+    </div>
+}
+
+@if (User.IsInRole("Admin"))
+{
+    using (Html.BeginForm(actionName: "New", controllerName: "Volunteer", method: FormMethod.Get))
+    {
+        <button class="btn btn-primary">Add new volunteer</button>
+    }
+}

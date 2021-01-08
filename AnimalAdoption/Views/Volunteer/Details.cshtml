@@ -1,0 +1,43 @@
+﻿@model AnimalAdoption.Models.Volunteer
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<h2>@ViewBag.Title</h2>
+@Html.LabelFor(volunteer => volunteer.VolunteerId)
+<p>@Model.VolunteerId</p>
+<br />
+@Html.LabelFor(volunteer => volunteer.Age)
+<p>@Model.Age</p>
+<br />
+@if (Model.Shelters.Count > 0)
+{
+    @Html.Label("Shelters", "Shelters:")
+    <br />
+    <ul>
+        @foreach (var shelter in Model.Shelters)
+        {
+            <li> @shelter.ShelterName</li>
+        }
+    </ul>
+}
+<br />
+
+@if (User.IsInRole("Admin"))
+{
+    <br />
+    using (Html.BeginForm(actionName: "Edit", controllerName: "Volunteer", method: FormMethod.Get, routeValues: new { id = Model.VolunteerId }))
+    {
+        <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Edit</button>
+    }
+    <br />
+    <br />
+    using (Html.BeginForm(actionName: "Delete", controllerName: "Volunteer", method: FormMethod.Post, routeValues: new { id = Model.VolunteerId }))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Delete</button>
+    }
+}
+
+<br />

@@ -202,6 +202,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\cropped-dogs-cats-banner-large.jpg" />
+    <Content Include="Images\images.png" />
+    <Content Include="Images\pngtree-cartoon-wind-simple-cat-dog-background-image_226227.jpg" />
+    <Content Include="Images\unnamed.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -226,8 +230,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -250,13 +252,15 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Breed\Index.cshtml" />
+    <Content Include="Views\Volunteer\Index.cshtml" />
+    <Content Include="Views\Volunteer\Details.cshtml" />
+    <Content Include="Views\Volunteer\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Adoption\" />
     <Folder Include="Views\Pet\" />
     <Folder Include="Views\Shelter\" />
-    <Folder Include="Views\Volunteer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

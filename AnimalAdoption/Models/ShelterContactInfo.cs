@@ -26,7 +26,6 @@ namespace AnimalAdoption.Models
         MaxLength(200, ErrorMessage = "County name cannot be more than 50!")]
         public string County { get; set; }
 
-        [EmailValidator]
         public string Email { get; set; }
 
         public virtual Shelter Shelter { get; set; }

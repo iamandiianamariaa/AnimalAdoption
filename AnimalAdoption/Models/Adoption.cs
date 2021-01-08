@@ -10,8 +10,8 @@ namespace AnimalAdoption.Models
     {
         public int AdoptionId { get; set; }
 
-        // one-to-many relationship
-        public int PetId { get; set; }
+        // one-to-one relationship
+        [Required]
         public virtual Pet Pet { get; set; }
 
         // one-to-many relationship

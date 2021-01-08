@@ -1,0 +1,42 @@
+﻿@model AnimalAdoption.Models.Volunteer
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm(actionName: "New", controllerName: "Volunteer", method: FormMethod.Post))
+        {
+            @Html.LabelFor(v => v.VolunteerName)
+            <br />
+            @Html.TextBoxFor(v => v.VolunteerName, null,
+                            new { placeholder = "Type in the volunteer's name", @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.VolunteerName, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(v => v.Age)
+            @Html.TextAreaFor(v => v.Age,
+                            new { placeholder = "Type in the volunteer's age", @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Age, "", new { @class = "text-danger" })
+            <br />
+            @Html.Label("Location", "Location:")
+            <br />
+            @Html.LabelFor(b => b.SheltersList, "Choose the shelters where the person volunteers:")
+            <br />
+            for (int i = 0; i < Model.SheltersList.Count(); i++)
+            {
+                @Html.HiddenFor(b => b.SheltersList[i].Id)
+                @Html.CheckBoxFor(b => b.SheltersList[i].Checked)
+                @Html.DisplayFor(b => b.SheltersList[i].Name)
+                <br />
+            }
+            <br />
+            <button class="btn btn-primary" type="submit">Add</button>
+        }
+
+    </div>
+</div>
+
+
