@@ -1,0 +1,56 @@
+﻿@model AnimalAdoption.Models.Pet
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Pet", method: FormMethod.Post))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @Html.HiddenFor(d => d.PetId)
+    <br />
+    @Html.Label("Name", "Pet Name")
+    <br />
+    @Html.EditorFor(d => d.PetName, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(d => d.PetName, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Color", "Color")
+    <br />
+    @Html.EditorFor(d => d.Color, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(d => d.Color, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Gender", "Gender")
+    <br />
+    @Html.EditorFor(d => d.Gender, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(d => d.Gender, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Description", "Description")
+    <br />
+    @Html.TextAreaFor(d => d.Description, new { @class = "form-control", @rows = "10" })
+    @Html.ValidationMessageFor(d => d.Description, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Species", "Species")
+    <br />
+    @Html.EditorFor(d => d.Species, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(d => d.Species, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Breed", "Breed")
+    <br />
+    @Html.EditorFor(d => d.Breed, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(d => d.Breed, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Shelter", "Shelter")
+    <br />
+    @Html.DropDownListFor(d => d.ShelterId, new SelectList(Model.ShelterList, "Value", "Text"), "Choose a shelter for the pet", new { @class = "form-control" })
+    @Html.ValidationMessageFor(d => d.ShelterId, "", new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}
+

@@ -5,12 +5,38 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using AnimalAdoption.Models;
 using System.Collections.Generic;
+using System;
+using System.ComponentModel.DataAnnotations;
+using AnimalAdoption.Models.MyValidation;
 
 namespace AnimalAdoption.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        [Required(ErrorMessage = "The first name must exist!")]
+        [MinLength(2, ErrorMessage = "First name cannot be less than 2!"),
+        MaxLength(200, ErrorMessage = "First name cannot be more than 50!")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "The last name must exist!")]
+        [MinLength(2, ErrorMessage = "Last name cannot be less than 2!"),
+        MaxLength(200, ErrorMessage = "Last name cannot be more than 50!")]
+        public string LastName { get; set; }
+
+        [Required(ErrorMessage = "The city must exist!")]
+        [MinLength(2, ErrorMessage = "City name cannot be less than 2!"),
+        MaxLength(200, ErrorMessage = "City name cannot be more than 50!")]
+        public string City { get; set; }
+
+        [Required(ErrorMessage = "The county must exist!")]
+        [MinLength(2, ErrorMessage = "County name cannot be less than 2!"),
+        MaxLength(200, ErrorMessage = "County name cannot be more than 50!")]
+        public string County { get; set; }
+
+        [BirthDateValidator]
+        [Required(ErrorMessage = "The birth date must exist!")]
+        public DateTime BirthDate { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

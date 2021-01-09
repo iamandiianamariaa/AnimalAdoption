@@ -36,7 +36,7 @@ namespace AnimalAdoption.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult New()
         {
             Pet pet = new Pet();
             pet.ShelterList = GetAllShelters();
@@ -45,16 +45,16 @@ namespace AnimalAdoption.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Create(Pet pet)
+        public ActionResult New(Pet pet)
         {
-            pet.ShelterList = GetAllShelters();
             try
             {
+                pet.ShelterList = GetAllShelters();
                 if (ModelState.IsValid)
                 {
                     db.Pets.Add(pet);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Volunteer");
+                    return RedirectToAction("Index", "Pet");
                 }
                 return View(pet);
             }

@@ -3,13 +3,14 @@
     ViewBag.Title = "New";
 }
 
+<br />
 <h2>@ViewBag.Title</h2>
 <br />
 <div class="row">
     <div class="col-md-4">
         @using (Html.BeginForm(actionName: "New", controllerName: "Volunteer", method: FormMethod.Post))
         {
-            @Html.LabelFor(v => v.VolunteerName)
+            @Html.Label("Name", "Name")
             <br />
             @Html.TextBoxFor(v => v.VolunteerName, null,
                             new { placeholder = "Type in the volunteer's name", @class = "form-control" })
@@ -17,17 +18,16 @@
             <br />
 
             @Html.LabelFor(v => v.Age)
-            @Html.TextAreaFor(v => v.Age,
+            @Html.TextBoxFor(v => v.Age,
                             new { placeholder = "Type in the volunteer's age", @class = "form-control" })
             @Html.ValidationMessageFor(v => v.Age, "", new { @class = "text-danger" })
-            <br />
-            @Html.Label("Location", "Location:")
             <br />
             @Html.LabelFor(b => b.SheltersList, "Choose the shelters where the person volunteers:")
             <br />
             for (int i = 0; i < Model.SheltersList.Count(); i++)
             {
                 @Html.HiddenFor(b => b.SheltersList[i].Id)
+                @Html.HiddenFor(b => b.SheltersList[i].Name)
                 @Html.CheckBoxFor(b => b.SheltersList[i].Checked)
                 @Html.DisplayFor(b => b.SheltersList[i].Name)
                 <br />

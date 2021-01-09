@@ -5,7 +5,7 @@
 
 <br />
 <h2>@ViewBag.Title</h2>
-@Html.LabelFor(volunteer => volunteer.VolunteerId)
+@Html.Label("Id", "Volunteer Id")
 <p>@Model.VolunteerId</p>
 <br />
 @Html.LabelFor(volunteer => volunteer.Age)
@@ -13,7 +13,7 @@
 <br />
 @if (Model.Shelters.Count > 0)
 {
-    @Html.Label("Shelters", "Shelters:")
+    @Html.Label("Shelters", "Shelters")
     <br />
     <ul>
         @foreach (var shelter in Model.Shelters)

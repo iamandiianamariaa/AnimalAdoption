@@ -184,7 +184,7 @@
     <Compile Include="Models\CheckBoxViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MyValidation\EmailValidator.cs" />
+    <Compile Include="Models\MyValidation\BirthDateValidator.cs" />
     <Compile Include="Models\Pet.cs" />
     <Compile Include="Models\Shelter.cs" />
     <Compile Include="Models\ShelterContactInfo.cs" />
@@ -251,15 +251,18 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Breed\Index.cshtml" />
     <Content Include="Views\Volunteer\Index.cshtml" />
     <Content Include="Views\Volunteer\Details.cshtml" />
     <Content Include="Views\Volunteer\New.cshtml" />
+    <Content Include="Views\Volunteer\Edit.cshtml" />
+    <Content Include="Views\Pet\Index.cshtml" />
+    <Content Include="Views\Pet\Details.cshtml" />
+    <Content Include="Views\Pet\New.cshtml" />
+    <Content Include="Views\Pet\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Adoption\" />
-    <Folder Include="Views\Pet\" />
     <Folder Include="Views\Shelter\" />
   </ItemGroup>
   <ItemGroup>

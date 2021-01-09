@@ -11,12 +11,13 @@ namespace AnimalAdoption.Models
     {
         public int ShelterId { get; set; }
 
+        [Required(ErrorMessage = "The name must exist!")]
         [MinLength(2, ErrorMessage = "Shelter name cannot be less than 2!"),
         MaxLength(200, ErrorMessage = "Shelter name cannot be more than 50!")]
         public string ShelterName { get; set; }
 
         // one-to one-relationship
-        [Required]
+        [Required(ErrorMessage = "You must insert a contact info!")]
         public virtual ShelterContactInfo ShelterContactInfo { get; set; }
 
         // many-to-one relationship

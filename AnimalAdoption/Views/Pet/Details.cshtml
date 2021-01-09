@@ -1,0 +1,45 @@
+﻿@model AnimalAdoption.Models.Pet
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<h2>@ViewBag.Title</h2>
+@Html.Label("Id", "Pet Id")
+<p>@Model.PetId</p>
+<br />
+@Html.LabelFor(pet => pet.Color)
+<p>@Model.Color</p>
+<br />
+@Html.LabelFor(pet => pet.Gender)
+<p>@Model.Gender</p>
+<br />
+@Html.LabelFor(pet => pet.Description)
+<p>@Model.Description</p>
+<br />
+@if (@Model.Shelter != null)
+{
+    @Html.LabelFor(pet => pet.Shelter)
+    <p>@Model.Shelter.ShelterName</p>
+}
+<br />
+
+@if (User.IsInRole("Admin"))
+{
+    <br />
+    using (Html.BeginForm(actionName: "Edit", controllerName: "Pet", method: FormMethod.Get, routeValues: new { id = Model.PetId }))
+    {
+        <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Edit</button>
+    }
+    <br />
+    <br />
+    using (Html.BeginForm(actionName: "Delete", controllerName: "Pet", method: FormMethod.Post, routeValues: new { id = Model.PetId }))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Delete</button>
+    }
+}
+
+<br />
+
+

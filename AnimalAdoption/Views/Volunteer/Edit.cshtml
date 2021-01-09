@@ -1,0 +1,35 @@
+﻿@model AnimalAdoption.Models.Volunteer
+@{
+    ViewBag.Title = "Edit";
+}
+<br />
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Volunteer", method: FormMethod.Post))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @Html.HiddenFor(v => v.VolunteerId)
+    <br />
+    @Html.Label("Name", "Name")
+    <br />
+    @Html.EditorFor(v => v.VolunteerName, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(v => v.VolunteerName, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Age", "Age")
+    @Html.EditorFor(v => v.Age, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(v => v.Age, "", new { @class = "text-danger" })
+    <br />
+    @Html.LabelFor(v => v.SheltersList, "Choose the shelters where the person volunteers")
+    <br />
+    for (int i = 0; i < Model.SheltersList.Count(); i++)
+    {
+        @Html.HiddenFor(v => v.SheltersList[i].Id)
+        @Html.HiddenFor(v => v.SheltersList[i].Name)
+        @Html.CheckBoxFor(v => v.SheltersList[i].Checked)
+        @Html.DisplayFor(v => v.SheltersList[i].Name)
+        <br />
+    }
+    <br />
+    <button class="btn btn-primary" type="submit">Update</button>
+}
+
+

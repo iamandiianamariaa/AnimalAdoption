@@ -1,0 +1,59 @@
+﻿@model AnimalAdoption.Models.Pet
+@{
+    ViewBag.Title = "New";
+}
+
+<br />
+<h2>@ViewBag.Title</h2>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm(actionName: "New", controllerName: "Pet", method: FormMethod.Post))
+        {
+            @Html.Label("Name", "Pet Name")
+            <br />
+            @Html.TextBoxFor(p => p.PetName, null,
+                            new { placeholder = "Type in the pet's name", @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.PetName, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(p => p.Color)
+            @Html.TextBoxFor(p => p.Color,
+                            new { placeholder = "Type in the pet's color", @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.Color, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(p => p.Gender)
+            @Html.TextBoxFor(p => p.Gender,
+                            new { placeholder = "Type in the pet's gender", @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.Gender, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(p => p.Description)
+            @Html.TextAreaFor(p => p.Description,
+                            new { placeholder = "Type in a few things about the pet", @class = "form-control", @rows = "20" })
+            @Html.ValidationMessageFor(p => p.Description, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(p => p.Species)
+            @Html.TextBoxFor(p => p.Species,
+                            new { placeholder = "Type in the pet's species", @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.Species, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(p => p.Breed)
+            @Html.TextBoxFor(p => p.Breed,
+                            new { placeholder = "Type in the pet's breed", @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.Breed, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(p => p.Shelter)
+            <br />
+            @Html.DropDownListFor(p => p.ShelterId, new SelectList(Model.ShelterList, "Value", "Text"), "Choose a shelter for the pet", new { @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.ShelterId, "", new { @class = "text-danger" })
+            <br />
+            <button class="btn btn-primary" type="submit">Add</button>
+        }
+
+    </div>
+</div>

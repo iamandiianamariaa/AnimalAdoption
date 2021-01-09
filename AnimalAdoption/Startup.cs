@@ -3,6 +3,7 @@ using Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using AnimalAdoption.Models;
+using System;
 
 [assembly: OwinStartupAttribute(typeof(AnimalAdoption.Startup))]
 namespace AnimalAdoption
@@ -33,6 +34,11 @@ namespace AnimalAdoption
                 var user = new ApplicationUser();
                 user.UserName = "admin@admin.com";
                 user.Email = "admin@admin.com";
+                user.FirstName = "admin";
+                user.LastName = "admin";
+                user.City = "Bucuresti";
+                user.County = "Bucuresti";
+                user.BirthDate = DateTime.Now;
                 var adminCreated = userManager.Create(user, "Admin2020");
                 if (adminCreated.Succeeded)
                 {

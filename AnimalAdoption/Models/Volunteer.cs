@@ -11,10 +11,12 @@ namespace AnimalAdoption.Models
     {
         public int VolunteerId { get; set; }
 
+        [Required(ErrorMessage = "The name must exist!")]
         [MinLength(2, ErrorMessage = "Name cannot be less than 2!"),
         MaxLength(200, ErrorMessage = "Name cannot be more than 100!")]
         public string VolunteerName { get; set; }
 
+        [Required(ErrorMessage = "The age must exist!")]
         [Range(16, 70, ErrorMessage = "Age must be between 16 and 70")]
         public int Age { get; set; }
 

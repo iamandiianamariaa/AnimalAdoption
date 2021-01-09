@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using AnimalAdoption.Models.MyValidation;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace AnimalAdoption.Models
@@ -64,6 +66,27 @@ namespace AnimalAdoption.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "County")]
+        public string County { get; set; }
+
+        [Required]
+        [BirthDateValidator]
+        [Display(Name = "Birth Date")]
+        public DateTime BirthDate { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
