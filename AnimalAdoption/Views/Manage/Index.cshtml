@@ -28,4 +28,20 @@
     {
         @Html.ActionLink("Create", "SetPassword")
     }
+    <br />
+    <br />
+    @Html.Label("City", "City")
+    <p>@Model.City</p>
+    <br />
+    @Html.Label("County", "County")
+    <p>@Model.County</p>
+    <br />
+    @Html.Label("BirthDate", "Birth Date")
+    <p>@Model.BirthDate</p>
+    <br />
+    @using (Html.BeginForm(actionName: "Edit", controllerName: "Manage",
+                    method: FormMethod.Post))
+    {
+        <button class=" btn btn-primary">Update user information</button>
+    }
 </div>

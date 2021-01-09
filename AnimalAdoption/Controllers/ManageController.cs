@@ -61,6 +61,7 @@ namespace AnimalAdoption.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.UpdateUserDetailsSuccess ? "Your details have been updated."
                 : "";
 
             var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -75,10 +76,60 @@ namespace AnimalAdoption.Controllers
                 LastName = currentUser.LastName,
                 City = currentUser.City,
                 County = currentUser.County,
-                Email = currentUser.Email
+                Email = currentUser.Email,
+                BirthDate = currentUser.BirthDate
             };
             return View(model);
         }
+
+        public async Task<ActionResult> Edit()
+        {
+                
+            ApplicationUser currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            return View(new IndexViewModel
+            {
+
+            FirstName = currentUser.FirstName,
+            LastName = currentUser.LastName,
+            Email = currentUser.Email,
+            City = currentUser.City,
+            County = currentUser.County,
+            BirthDate = currentUser.BirthDate
+
+        });
+        }
+
+        
+        // POST: /Manage/New
+        [HttpPut]
+        public async Task<ActionResult> Edit(IndexViewModel model)
+        {
+            ManageMessageId message = ManageMessageId.Error;
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index", new { Message = message });
+            }
+            ApplicationUser currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            currentUser.FirstName = model.FirstName;
+            currentUser.LastName = model.LastName;
+            currentUser.Email = model.Email;
+            currentUser.City = model.City;
+            currentUser.County = model.County;
+            currentUser.BirthDate = model.BirthDate;
+            var result = await UserManager.UpdateAsync(currentUser);
+
+            if (result.Succeeded)
+            {
+                message = ManageMessageId.UpdateUserDetailsSuccess;
+            }
+            else
+            {
+                message = ManageMessageId.Error;
+            }
+            return RedirectToAction("Index", new { Message = message });
+        }
+
 
         //
         // POST: /Manage/RemoveLogin
@@ -386,6 +437,7 @@ namespace AnimalAdoption.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
+            UpdateUserDetailsSuccess,
             Error
         }
 

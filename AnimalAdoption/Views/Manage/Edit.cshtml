@@ -1,0 +1,53 @@
+﻿@model AnimalAdoption.Models.IndexViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Edit", "Manage", FormMethod.Post))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.ValidationSummary()
+    @Html.Label("Name", "First Name")
+    <br />
+    @Html.EditorFor(d => d.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(d => d.FirstName, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("LastName", "Last Name")
+    <br />
+    @Html.EditorFor(d => d.LastName, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(d => d.LastName, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Email", "Email")
+    <br />
+    @Html.EditorFor(d => d.Email, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(d => d.Email, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("City", "City")
+    <br />
+    @Html.EditorFor(d => d.City, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(d => d.City, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("County", "County")
+    <br />
+    @Html.EditorFor(d => d.County, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(d => d.County, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Birthdate", "Birth Date")
+    <br />
+    @Html.EditorFor(d => d.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(d => d.BirthDate, "", new { @class = "text-danger" })
+    <br />
+    <div class="d-flex flex-row justify-content-between align-items-center mt-4">
+        <button class="btn btn-primary font-weight-bold" type="submit">
+            Update User Details
+        </button>
+    </div>
+}
+

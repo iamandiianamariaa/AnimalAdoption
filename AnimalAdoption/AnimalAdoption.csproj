@@ -267,6 +267,7 @@
     <Content Include="Views\ShelterContactInfo\Details.cshtml" />
     <Content Include="Views\ShelterContactInfo\Edit.cshtml" />
     <Content Include="Views\ShelterContactInfo\New.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
