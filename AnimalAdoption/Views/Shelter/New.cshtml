@@ -1,0 +1,47 @@
+﻿@model AnimalAdoption.Models.ShelterContactViewModel
+@{
+    ViewBag.Title = "New";
+}
+
+<br />
+<h2>@ViewBag.Title</h2>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm(actionName: "New", controllerName: "Shelter", method: FormMethod.Post))
+        {
+            @Html.Label("Name", "Shelter Name")
+            <br />
+            @Html.TextBoxFor(c => c.Shelter.ShelterName, null,
+                            new { placeholder = "Type in the name of the shelter", @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Shelter.ShelterName, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(c => c.ShelterContactInfo.Address)
+            @Html.TextBoxFor(c => c.ShelterContactInfo.Address,
+                            new { placeholder = "Type in the address of the shelter", @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.ShelterContactInfo.Address, "", new { @class = "text-danger" })
+            <br />
+            @Html.Label("Number", "Phone Number")
+            <br />
+            @Html.TextBoxFor(c => c.ShelterContactInfo.PhoneNumber, new { placeholder = "Type in the phone number of the shelter", @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.ShelterContactInfo.PhoneNumber, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.Label("City", "City")
+            @Html.TextBoxFor(c => c.ShelterContactInfo.City, null, new { placeholder = "Type in the city of the shelter", @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.ShelterContactInfo.City, "", new { @class = "text-danger" })
+            <br />
+            @Html.Label("County", "County")
+            @Html.TextBoxFor(c => c.ShelterContactInfo.County, null, new { placeholder = "Type in the county of the shelter", @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.ShelterContactInfo.County, "", new { @class = "text-danger" })
+            <br />
+            @Html.Label("Email", "Email")
+            @Html.TextBoxFor(c => c.ShelterContactInfo.Email, null, new { placeholder = "Type in the email of the shelter", @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.ShelterContactInfo.Email, "", new { @class = "text-danger" })
+            <br />
+            <button class="btn btn-primary" type="submit">Add</button>
+        }
+    </div>
+</div>
+

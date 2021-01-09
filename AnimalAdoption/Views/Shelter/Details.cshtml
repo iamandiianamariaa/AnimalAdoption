@@ -1,0 +1,49 @@
+﻿@model AnimalAdoption.Models.Shelter
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<h2>@ViewBag.Title</h2>
+
+@Html.Label("Name", "Name")
+<br />
+<p>@Model.ShelterName</p>
+<br />
+
+@Html.Label("Id", "Shelter Id")
+<p>@Model.ShelterContactInfo.ShelterContactInfoId</p>
+<br />
+@Html.Label("Address", "Shelter Address")
+<p>@Model.ShelterContactInfo.Address</p>
+<br />
+@Html.Label("Phone", "Shelter Phone Number")
+<p>@Model.ShelterContactInfo.PhoneNumber</p>
+<br />
+@Html.Label("City", "City")
+<p>@Model.ShelterContactInfo.City</p>
+<br />
+@Html.Label("County", "County")
+<p>@Model.ShelterContactInfo.County</p>
+<br />
+@Html.Label("Email", "Email")
+<p>@Model.ShelterContactInfo.Email</p>
+<br />
+
+@if (User.IsInRole("Admin"))
+{
+    <br />
+    using (Html.BeginForm(actionName: "Edit", controllerName: "Shelter", method: FormMethod.Get, routeValues: new { id = Model.ShelterId }))
+    {
+        <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Edit</button>
+    }
+    <br />
+    <br />
+    using (Html.BeginForm(actionName: "Delete", controllerName: "Shelter", method: FormMethod.Post, routeValues: new { id = Model.ShelterId }))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Delete</button>
+    }
+}
+<br />
+

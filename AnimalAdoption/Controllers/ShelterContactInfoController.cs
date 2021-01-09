@@ -36,7 +36,7 @@ namespace AnimalAdoption.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult New()
         {
             ShelterContactInfo shelterContactInfo = new ShelterContactInfo();
             return View(shelterContactInfo);
@@ -44,7 +44,7 @@ namespace AnimalAdoption.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Create(ShelterContactInfo shelterContactInfo)
+        public ActionResult New(ShelterContactInfo shelterContactInfo)
         {
             try
             {

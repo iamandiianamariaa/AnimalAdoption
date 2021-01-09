@@ -63,14 +63,19 @@ namespace AnimalAdoption.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
-            var userId = User.Identity.GetUserId();
+            var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                PhoneNumber = await UserManager.GetPhoneNumberAsync(currentUser.Id),
+                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(currentUser.Id),
+                Logins = await UserManager.GetLoginsAsync(currentUser.Id),
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(currentUser.Id),
+                FirstName = currentUser.FirstName,
+                LastName = currentUser.LastName,
+                City = currentUser.City,
+                County = currentUser.County,
+                Email = currentUser.Email
             };
             return View(model);
         }

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using AnimalAdoption.Models.MyValidation;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -12,6 +14,32 @@ namespace AnimalAdoption.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "County")]
+        public string County { get; set; }
+
+        [Required]
+        [BirthDateValidator]
+        [Display(Name = "Birth Date")]
+        public DateTime BirthDate { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
     }
 
     public class ManageLoginsViewModel

@@ -30,6 +30,7 @@ namespace AnimalAdoption.Models
         MaxLength(200, ErrorMessage = "County name cannot be more than 50!")]
         public string County { get; set; }
 
+        [EmailAddress]
         [Required(ErrorMessage = "The email must exist!")]
         public string Email { get; set; }
 

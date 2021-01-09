@@ -259,11 +259,18 @@
     <Content Include="Views\Pet\Details.cshtml" />
     <Content Include="Views\Pet\New.cshtml" />
     <Content Include="Views\Pet\Edit.cshtml" />
+    <Content Include="Views\Shelter\Index.cshtml" />
+    <Content Include="Views\Shelter\Details.cshtml" />
+    <Content Include="Views\Shelter\New.cshtml" />
+    <Content Include="Views\Shelter\Edit.cshtml" />
+    <Content Include="Views\ShelterContactInfo\Index.cshtml" />
+    <Content Include="Views\ShelterContactInfo\Details.cshtml" />
+    <Content Include="Views\ShelterContactInfo\Edit.cshtml" />
+    <Content Include="Views\ShelterContactInfo\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Adoption\" />
-    <Folder Include="Views\Shelter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

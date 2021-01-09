@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var contact in @ViewBag.ShelterContactInfos)
+{
+    <div class="panel panel-default">
+        <div class="panel panel-body">
+            @Html.Label("Name", "Name")
+            <p>@contact.Shelter.ShelterName</p>
+            <br />
+            @Html.Label("Address", "Address")
+            <p>@contact.Address</p>
+
+            @using (Html.BeginForm(actionName: "Details", controllerName: "ShelterContactInfo", method: FormMethod.Get, routeValues: new { id = contact.ShelterContactInfoId }))
+            {
+                <button class="btn btn-primary" type="submit">Details</button>
+            }
+        </div>
+    </div>
+}
+

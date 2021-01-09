@@ -1,0 +1,40 @@
+﻿@model AnimalAdoption.Models.ShelterContactInfo
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<h2>@ViewBag.Title</h2>
+@Html.Label("Name", "Shelter Name")
+<p>@Model.Shelter.ShelterName</p>
+<br />
+@Html.Label("Id", "Shelter Id")
+<p>@Model.ShelterContactInfoId</p>
+<br />
+@Html.Label("Address", "Address")
+<p>@Model.Address</p>
+<br />
+@Html.Label("PhoneNumber", "Phone Number")
+<p>@Model.PhoneNumber</p>
+<br />
+@Html.Label("City", "City")
+<p>@Model.City</p>
+<br />
+@Html.Label("County", "County")
+<p>@Model.County</p>
+<br />
+@Html.Label("Email", "Email")
+<p>@Model.Email</p>
+<br />
+
+@if (User.IsInRole("Admin"))
+{
+    using (Html.BeginForm(actionName: "Edit", controllerName: "ShelterContactInfo", method: FormMethod.Get, routeValues: new { id = Model.ShelterContactInfoId }))
+    {
+        <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Edit</button>
+    }
+    <br />
+}
+
+<br />
+

@@ -1,0 +1,47 @@
+﻿@model AnimalAdoption.Models.ShelterContactInfo
+@{
+    ViewBag.Title = "New";
+}
+
+<br />
+<h2>@ViewBag.Title</h2>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm(actionName: "New", controllerName: "ShelterContactInfo", method: FormMethod.Post))
+        {
+            @Html.Label("Address", "Address")
+            <br />
+            @Html.TextBoxFor(v => v.Address, null,
+                            new { placeholder = "Type in the address of the shelter", @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Address, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.Label("Number", "Phone Number")
+            @Html.TextBoxFor(v => v.PhoneNumber,
+                            new { placeholder = "Type in the phone number of the shelter", @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.PhoneNumber, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.Label("City", "City")
+            @Html.TextBoxFor(v => v.City,
+                            new { placeholder = "Type in the city of the shelter", @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.City, "", new { @class = "text-danger" })
+            <br />
+            @Html.Label("County", "County")
+            @Html.TextBoxFor(v => v.County,
+                            new { placeholder = "Type in the county of the shelter", @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.County, "", new { @class = "text-danger" })
+            <br />
+            @Html.Label("Email", "Email")
+            @Html.TextBoxFor(v => v.Email,
+                            new { placeholder = "Type in the email of the shelter", @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Email, "", new { @class = "text-danger" })
+            <br />
+            <br />
+            <button class="btn btn-primary" type="submit">Add</button>
+        }
+
+    </div>
+</div>
+

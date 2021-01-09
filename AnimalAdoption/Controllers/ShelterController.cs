@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,7 +15,7 @@ namespace AnimalAdoption.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            List<Shelter> shelters = db.Shelters.ToList();
+            List<Shelter> shelters = db.Shelters.Include("ShelterContactInfo").ToList();
             ViewBag.Shelters = shelters;
             return View();
         }
@@ -36,34 +37,38 @@ namespace AnimalAdoption.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult New()
         {
             ShelterContactViewModel shelter = new ShelterContactViewModel();
+            shelter.Shelter = new Shelter();
+            shelter.ShelterContactInfo = new ShelterContactInfo();
             return View(shelter);
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Create(ShelterContactViewModel shelterViewModel)
+        public ActionResult New(ShelterContactViewModel shelterViewModel)
         {
             try
             {
+                ModelState.Remove("Shelter.ShelterContactInfo");
                 if (ModelState.IsValid)
                 {
                     ShelterContactInfo contact = new ShelterContactInfo
                     {
-                        Address = shelterViewModel.Address,
-                        PhoneNumber = shelterViewModel.PhoneNumber,
-                        City = shelterViewModel.City,
-                        County = shelterViewModel.County,
-                        Email = shelterViewModel.Email
+                        Address = shelterViewModel.ShelterContactInfo.Address,
+                        PhoneNumber = shelterViewModel.ShelterContactInfo.PhoneNumber,
+                        City = shelterViewModel.ShelterContactInfo.City,
+                        County = shelterViewModel.ShelterContactInfo.County,
+                        Email = shelterViewModel.ShelterContactInfo.Email
                     };
                     db.ShelterContactInfos.Add(contact);
                     Shelter shelter = new Shelter
                     {
-                        ShelterName = shelterViewModel.ShelterName,
+                        ShelterName = shelterViewModel.Shelter.ShelterName,
                         ShelterContactInfo = contact
                     };
+                    contact.Shelter = shelter;
                     db.Shelters.Add(shelter);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Shelter");
@@ -103,24 +108,37 @@ namespace AnimalAdoption.Controllers
                 {
                     return HttpNotFound("Couldn't find the shelter with id " + id.ToString() + "!");
                 }
-                return View(shelter);
+                ShelterContactViewModel contact = new ShelterContactViewModel();
+                contact.Shelter = shelter;
+                contact.ShelterContactInfo = shelter.ShelterContactInfo;
+                return View(contact);
             }
             return HttpNotFound("Couldn't find the shelter with id " + id.ToString() + "!");
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPut]
-        public ActionResult Edit(int id, Shelter shelterRequestor)
+        public ActionResult Edit(int id, ShelterContactViewModel shelterRequestor)
         {
             try
             {
+                ModelState.Remove("Shelter.ShelterContactInfo");
                 if (ModelState.IsValid)
                 {
                     Shelter shelter = db.Shelters.Find(id);
                     if (TryUpdateModel(shelter))
                     {
-                        shelter.ShelterName = shelterRequestor.ShelterName;
+                        shelter.ShelterName = shelterRequestor.Shelter.ShelterName;
                         db.SaveChanges();
+                    }
+                    ShelterContactInfo contactInfo = db.ShelterContactInfos.Find(shelter.ShelterContactInfo.ShelterContactInfoId);
+                    if (TryUpdateModel(contactInfo))
+                    {
+                        contactInfo.Address = shelterRequestor.ShelterContactInfo.Address;
+                        contactInfo.PhoneNumber = shelterRequestor.ShelterContactInfo.PhoneNumber;
+                        contactInfo.City = shelterRequestor.ShelterContactInfo.City;
+                        contactInfo.County = shelterRequestor.ShelterContactInfo.County;
+                        contactInfo.Email = shelterRequestor.ShelterContactInfo.Email;
                     }
                     return RedirectToAction("Index");
                 }
