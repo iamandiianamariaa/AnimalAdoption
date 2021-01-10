@@ -203,9 +203,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\cropped-dogs-cats-banner-large.jpg" />
-    <Content Include="Images\images.png" />
     <Content Include="Images\pngtree-cartoon-wind-simple-cat-dog-background-image_226227.jpg" />
-    <Content Include="Images\unnamed.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

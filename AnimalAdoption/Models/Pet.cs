@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
 
 namespace AnimalAdoption.Models
 {
@@ -41,6 +43,12 @@ namespace AnimalAdoption.Models
         public string Breed { get; set; }
 
         public bool IsAdopted { get; set; } = false;
+
+        [DisplayName("Upload file")]
+        public string ImagePath { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
 
         // one-to-one relationship
         public virtual Adoption Adoption { get; set; }

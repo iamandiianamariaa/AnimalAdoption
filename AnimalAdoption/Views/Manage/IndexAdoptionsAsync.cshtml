@@ -11,6 +11,10 @@
 {
     <div class="panel panel-default">
         <div class="panel-body">
+            <dd>
+                <img src="@Url.Content(adoption.Pet.ImagePath)" width="300" height="390" />
+            </dd>
+            <br />
             @Html.Label("Name", "Name")
             <br />
             <p>@adoption.Pet.PetName</p>
@@ -36,8 +40,8 @@
             <br />
             @using (Html.BeginForm(actionName: "Delete", controllerName: "Adoption", method: FormMethod.Post, routeValues: new { id = adoption.AdoptionId }))
             {
-            @Html.HttpMethodOverride(HttpVerbs.Delete)
-            <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Delete</button>
+                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Delete</button>
             }
         </div>
     </div>

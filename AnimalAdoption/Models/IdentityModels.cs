@@ -69,6 +69,7 @@ namespace AnimalAdoption.Models
         public DbSet<Adoption> Adoptions { get; set; }
 
         public DbSet<ShelterContactInfo> ShelterContactInfos { get; set; }
+
     }
 
     public class Initp : DropCreateDatabaseIfModelChanges<ApplicationDbContext>

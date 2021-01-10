@@ -8,6 +8,10 @@
 <br />
 <h2>@ViewBag.Title</h2>
 
+<dd>
+    <img src="@Url.Content(@Model.Pet.ImagePath)" width="300" height="390" />
+</dd>
+<br />
 @Html.Label("PetId", "Pet Id")
 <br />
 <p>@Model.Pet.PetId</p>

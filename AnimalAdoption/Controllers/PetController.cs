@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -49,6 +50,12 @@ namespace AnimalAdoption.Controllers
         {
             try
             {
+                string fileName = Path.GetFileNameWithoutExtension(pet.ImageFile.FileName);
+                string extension = Path.GetExtension(pet.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                pet.ImagePath = "~/Images/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                pet.ImageFile.SaveAs(fileName);
                 pet.ShelterList = GetAllShelters();
                 if (ModelState.IsValid)
                 {
