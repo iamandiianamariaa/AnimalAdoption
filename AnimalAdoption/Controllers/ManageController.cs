@@ -100,8 +100,58 @@ namespace AnimalAdoption.Controllers
         });
         }
 
-        
-        // POST: /Manage/New
+        [Authorize(Roles = "Admin")]
+        public ActionResult IndexUsers()
+        {
+            var context = new ApplicationDbContext();
+
+            var allUsers = context.Users.ToList();
+            ViewBag.Users = allUsers;
+            return View();
+        }
+
+        public async Task<ActionResult> IndexAdoptionsAsync()
+        {
+            ApplicationUser currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            var adoptions = currentUser.Adoptions.ToList();
+            ViewBag.Adoptions = adoptions;
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete]
+        public async Task<ActionResult> Delete(string userId)
+        {
+            ManageMessageId message = ManageMessageId.Error;
+            if (userId == null)
+            {
+                 return RedirectToAction("IndexUsers", new { Message = message });
+            }
+
+            //get User Data from Userid
+            var user = await UserManager.FindByIdAsync(userId);
+
+            //Gets list of Roles associated with current user
+            var rolesForUser = await UserManager.GetRolesAsync(userId);
+
+                if (rolesForUser.Count() > 0)
+                {
+                    foreach (var item in rolesForUser.ToList())
+                    {
+                        // item should be the name of the role
+                        var result = await UserManager.RemoveFromRoleAsync(user.Id, item);
+                    }
+                }
+
+                //Delete User
+                await UserManager.DeleteAsync(user);
+
+            return RedirectToAction("IndexUsers", new { Message = message });
+        }
+
+
+        // POST: /Manage/Edit
         [HttpPut]
         public async Task<ActionResult> Edit(IndexViewModel model)
         {

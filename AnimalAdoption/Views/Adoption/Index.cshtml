@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br />
+<br />
+<h2>@ViewBag.Title</h2>
+
+@foreach (var adoption in ViewBag.Adoptions)
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @Html.Label("Name", "Name")
+            <br />
+            <p>@adoption.Pet.PetName</p>
+            @Html.Label("Species", "Species")
+            <br />
+            <p>@adoption.Pet.Species</p>
+
+            @Html.Label("Breed", "Breed")
+            <br />
+            <p>@adoption.Pet.Breed</p>
+            @using (Html.BeginForm(actionName: "Details", controllerName: "Adoption",
+            method: FormMethod.Get, routeValues: new { id = adoption.AdoptionId }))
+            {
+                <button class=" btn btn-primary">Details</button>
+            }
+        </div>
+    </div>
+}
+

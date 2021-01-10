@@ -4,7 +4,9 @@
 }
 
 <br />
-<h2>@ViewBag.Title.</h2>
+<br />
+<br />
+<h2>@ViewBag.Title</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
@@ -43,5 +45,27 @@
                     method: FormMethod.Post))
     {
         <button class=" btn btn-primary">Update user information</button>
+    }
+    <div style="margin-top: 20px;">
+        @using (Html.BeginForm(actionName: "IndexAdoptionsAsync", controllerName: "Manage", method: FormMethod.Get))
+        {
+            <button class="btn btn-primary">See my adoptions</button>
+        }
+    </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <br />
+        <div style="margin-top: 20px;">
+            @using (Html.BeginForm(actionName: "IndexUsers", controllerName: "Manage", method: FormMethod.Get))
+            {
+                <button class="btn btn-primary">See all users</button>
+            }
+        </div>
+        <div style="margin-top: 20px;">
+            @using (Html.BeginForm(actionName: "Index", controllerName: "Adoption", method: FormMethod.Get))
+            {
+                <button class="btn btn-primary">See all adoptions</button>
+            }
+        </div>
     }
 </div>

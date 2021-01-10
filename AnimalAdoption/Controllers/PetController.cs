@@ -14,7 +14,7 @@ namespace AnimalAdoption.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            List<Pet> pets = db.Pets.ToList();
+            List<Pet> pets = db.Pets.Where(p=> p.IsAdopted==false).ToList();
             ViewBag.Pets = pets;
             return View();
         }

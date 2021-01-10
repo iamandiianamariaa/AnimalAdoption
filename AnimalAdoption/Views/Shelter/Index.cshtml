@@ -13,22 +13,24 @@
             <br />
             <p>@shelter.ShelterName</p>
             @using (Html.BeginForm(actionName: "Details", controllerName: "Shelter",
-                    method: FormMethod.Get, routeValues: new { id = shelter.ShelterId }))
+            method: FormMethod.Get, routeValues: new { id = shelter.ShelterId }))
             {
                 <button class=" btn btn-primary">Details</button>
             }
         </div>
     </div>
 }
-
-@using (Html.BeginForm(actionName: "New", controllerName: "Shelter", method: FormMethod.Get))
+<div style="margin-top: 20px;">
+    @using (Html.BeginForm(actionName: "Index", controllerName: "ShelterContactInfo", method: FormMethod.Get))
+    {
+        <button class="btn btn-primary">See contact info for shelters</button>
+    }
+</div>
+<br />
+@if (User.IsInRole("Admin"))
 {
-    <button class="btn btn-primary">Add new shelter</button>
+    using (Html.BeginForm(actionName: "New", controllerName: "Shelter", method: FormMethod.Get))
+    {
+        <button class="btn btn-primary">Add new shelter</button>
+    }
 }
-
-    <div style="margin-top: 20px;">
-        @using (Html.BeginForm(actionName: "Index", controllerName: "ShelterContactInfo", method: FormMethod.Get))
-        {
-            <button class="btn btn-primary">See contact info for shelters</button>
-        }
-    </div>

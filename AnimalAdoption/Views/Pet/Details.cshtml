@@ -4,10 +4,21 @@
 }
 
 <br />
+<br />
+<br />
 <h2>@ViewBag.Title</h2>
 @Html.Label("Id", "Pet Id")
 <p>@Model.PetId</p>
 <br />
+@Html.Label("Name", "Name")
+<br />
+<p>@Model.PetName</p>
+@Html.Label("Species", "Species")
+<br />
+<p>@Model.Species</p>
+@Html.Label("Breed", "Breed")
+<br />
+<p>@Model.Breed</p>
 @Html.LabelFor(pet => pet.Color)
 <p>@Model.Color</p>
 <br />
@@ -23,7 +34,11 @@
     <p>@Model.Shelter.ShelterName</p>
 }
 <br />
-
+@using (Html.BeginForm(actionName: "New", controllerName: "Adoption", method: FormMethod.Post, routeValues: new { id = Model.PetId }))
+{
+    <button class="btn btn-primary">Adopt pet</button>
+}
+<br />
 @if (User.IsInRole("Admin"))
 {
     <br />

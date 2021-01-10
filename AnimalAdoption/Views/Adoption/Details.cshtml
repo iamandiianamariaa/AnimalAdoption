@@ -1,0 +1,49 @@
+﻿@model AnimalAdoption.Models.Adoption
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<br />
+<br />
+<h2>@ViewBag.Title</h2>
+
+@Html.Label("PetId", "Pet Id")
+<br />
+<p>@Model.Pet.PetId</p>
+<br />
+
+@Html.Label("Name", "Name")
+<br />
+<p>@Model.Pet.PetName</p>
+<br />
+
+@Html.Label("Species", "Species")
+<br />
+<p>@Model.Pet.Species</p>
+
+@Html.Label("Breed", "Breed")
+<br />
+<p>@Model.Pet.Breed</p>
+
+@Html.Label("Name", "First Name")
+<p>@Model.User.FirstName</p>
+<br />
+@Html.Label("Name", "Last Name")
+<p>@Model.User.LastName</p>
+<br />
+@Html.Label("Email", "Email")
+<p>@Model.User.Email</p>
+<br />
+
+@if (User.IsInRole("Admin"))
+{
+    <br />
+    using (Html.BeginForm(actionName: "Delete", controllerName: "Adoption", method: FormMethod.Post, routeValues: new { id = Model.AdoptionId }))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Delete</button>
+    }
+}
+<br />
+

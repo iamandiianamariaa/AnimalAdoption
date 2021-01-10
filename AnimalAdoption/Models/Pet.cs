@@ -40,6 +40,8 @@ namespace AnimalAdoption.Models
         MaxLength(200, ErrorMessage = "Breed name cannot be more than 50!")]
         public string Breed { get; set; }
 
+        public bool IsAdopted { get; set; } = false;
+
         // one-to-one relationship
         public virtual Adoption Adoption { get; set; }
 

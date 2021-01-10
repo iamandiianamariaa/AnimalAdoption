@@ -4,10 +4,15 @@
 }
 
 <br />
+<br />
+<br />
 <h2>@ViewBag.Title</h2>
 @Html.Label("Id", "Volunteer Id")
 <p>@Model.VolunteerId</p>
 <br />
+@Html.Label("Name", "Name")
+<br />
+<p>@Model.VolunteerName</p>
 @Html.LabelFor(volunteer => volunteer.Age)
 <p>@Model.Age</p>
 <br />

@@ -1,0 +1,42 @@
+﻿@model AnimalAdoption.Models.IndexViewModel
+@{
+    ViewBag.Title = "Users";
+}
+
+<br />
+<br />
+<br />
+<h2>@ViewBag.Title</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    @foreach (var user in ViewBag.Users)
+    {
+        @Html.Label("Name", "First Name")
+        <p>@user.FirstName</p>
+        <br />
+        @Html.Label("Name", "Last Name")
+        <p>@user.LastName</p>
+        <br />
+        @Html.Label("Email", "Email")
+        <p>@user.Email</p>
+        <br />
+        @Html.Label("City", "City")
+        <p>@user.City</p>
+        <br />
+        @Html.Label("County", "County")
+        <p>@user.County</p>
+        <br />
+        @Html.Label("BirthDate", "Birth Date")
+        <p>@user.BirthDate</p>
+        <br />
+        using (Html.BeginForm(actionName: "Delete", controllerName: "Manage", method: FormMethod.Post, routeValues: new {  userId = user.Id }))
+        {
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Delete</button>
+        }
+        <br />
+        <br />
+        <br />
+    }
+</div>

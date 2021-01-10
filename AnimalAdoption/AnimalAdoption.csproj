@@ -268,10 +268,13 @@
     <Content Include="Views\ShelterContactInfo\Edit.cshtml" />
     <Content Include="Views\ShelterContactInfo\New.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\Manage\IndexUsers.cshtml" />
+    <Content Include="Views\Adoption\Index.cshtml" />
+    <Content Include="Views\Adoption\Details.cshtml" />
+    <Content Include="Views\Manage\IndexAdoptionsAsync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Adoption\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
