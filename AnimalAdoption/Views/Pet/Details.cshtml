@@ -38,11 +38,14 @@
     <p>@Model.Shelter.ShelterName</p>
 }
 <br />
-@using (Html.BeginForm(actionName: "New", controllerName: "Adoption", method: FormMethod.Post, routeValues: new { id = Model.PetId }))
+@if (User.IsInRole("User"))
 {
-    <button class="btn btn-primary">Adopt pet</button>
-}
+    using (Html.BeginForm(actionName: "New", controllerName: "Adoption", method: FormMethod.Post, routeValues: new { id = Model.PetId }))
+    {
+        <button class="btn btn-primary">Adopt pet</button>
+    }
 <br />
+}
 @if (User.IsInRole("Admin"))
 {
     <br />

@@ -49,6 +49,7 @@ namespace AnimalAdoption.Controllers
             return HttpNotFound("Couldn't find the pet with id " + id.ToString());
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         public ActionResult New(int?id)
         {

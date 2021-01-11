@@ -46,12 +46,15 @@
     {
         <button class=" btn btn-primary">Update user information</button>
     }
-    <div style="margin-top: 20px;">
-        @using (Html.BeginForm(actionName: "IndexAdoptionsAsync", controllerName: "Manage", method: FormMethod.Get))
-        {
-            <button class="btn btn-primary">See my adoptions</button>
-        }
-    </div>
+    @if (User.IsInRole("User"))
+    {
+        <div style="margin-top: 20px;">
+            @using (Html.BeginForm(actionName: "IndexAdoptionsAsync", controllerName: "Manage", method: FormMethod.Get))
+            {
+                <button class="btn btn-primary">See my adoptions</button>
+            }
+        </div>
+     }
     @if (User.IsInRole("Admin"))
     {
         <br />
